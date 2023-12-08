@@ -1,5 +1,13 @@
 <?php
 include "dbconnection.php";
+//Code for deletion
+if(isset($_GET['delid']))
+{
+$rid=intval($_GET['delid']);
+$sql=mysqli_query($con,"DELETE FROM tblusers WHERE ID=$rid");
+echo "<script>alert('Data deleted');</script>"; 
+echo "<script>window.location.href = 'index.php'</script>";     
+} 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -226,8 +234,8 @@ include "dbconnection.php";
                                     <td><?php echo $row['MobileNumber']; ?></td>
                                     <td> <?php echo $row['CreationDate']; ?></td>
                                     <td>
-                                        <a href="read.php?viewid=<?php echo htmlentities($row['ID']); ?>" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                                        <a href="edit.php?editid=<?php echo htmlentities($row['ID']); ?>" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                        <a href="read.php?viewid=<?php echo $row['ID']; ?>" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+                                        <a href="edit.php?editid=<?php echo $row['ID']; ?>" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                                         <a href="index.php?delid=<?php echo ($row['ID']); ?>" class="delete" title="Delete" data-toggle="tooltip" onclick="return confirm('Do you really want to Delete ?');"><i class="material-icons">&#xE872;</i></a>
                                     </td>
                                 </tr>
